@@ -1,0 +1,6 @@
+.DS_Store
+node_modules
+cypress/downloads
+cypress/.DS_Store
+cypress/screenshots
+cucumber-report.html
