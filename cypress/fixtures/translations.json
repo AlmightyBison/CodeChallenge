@@ -1,0 +1,17 @@
+{
+  "FI": {
+    "logIn": "Kirjaudu",
+    "depositAndPlay": "Talleta ja pelaa",
+    "search": "Etsi"
+  },
+  "EE": {
+    "logIn": "Logi sisse",
+    "depositAndPlay": "Tee sissemakse",
+    "search": "Otsi"
+  },
+  "RU": {
+    "logIn": "Зайти в игру",
+    "depositAndPlay": "Пополнить баланс",
+    "search": "Поиск"
+  }
+}

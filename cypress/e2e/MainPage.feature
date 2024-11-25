@@ -8,5 +8,17 @@ Feature: Main Page Features
         Then I verify "Book of Dead" is loading
 
     @BC-002
-    Scenario: Scenario mobile
+    Scenario Outline: Language Switching
+        Given I navigate to boostcasino from desktop device
+        When I click on dropdown language button
+        And I click on "<language>" option of dropdown language menu
+        Then I verify that page is on "<language>" language
+        Examples:
+            | language |
+            | FI       |
+            | EE       |
+            | RU       |
+
+    @BC-003
+    Scenario: Main Site Navigation through mobile
         Given I navigate to boostcasino from mobile device

@@ -1,10 +1,14 @@
 import { BasePage } from "./BasePage";
 
 const MAIN_URL = "https://www.boostcasino.com/";
+const DEFAULT_MOBILE = "samsung-s10";
 const OPTIONAL_ALLOW_COOKIE =
   "div #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection";
-const DEFAULT_MOBILE = "samsung-s10";
-const SEARCH_INPUT_FIELD = "[placeholder='Search']";
+const DROPDOWN_LANGUAGE_BUTTON = ".active-item div[font-family='primary']";
+const DROPDOWN_LANGUAGE_MENU = ".sc-tsFYE.hFCUsE";
+const LOG_IN_BUTTON = ".sc-crXcEl.cQZcGq";
+const DEPOSIT_AND_PAY_BUTTON = ".sc-hRwTwm .gtm-button";
+const SEARCH_INPUT_FIELD = ".MuiInputBase-input";
 const SEARCH_RESULT_NAMES = "div .sc-TRNrF h6";
 
 export class MainPage extends BasePage {
@@ -59,5 +63,31 @@ export class MainPage extends BasePage {
         "text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')," +
         `"${name.toLowerCase()}")]]]`
     ).click();
+  }
+
+  static dropdownLanguageIsVisible() {
+    this.isVisible(DROPDOWN_LANGUAGE_BUTTON);
+  }
+
+  static clickOnDropdownLanguageButton() {
+    this.click(DROPDOWN_LANGUAGE_BUTTON);
+    this.isVisible(DROPDOWN_LANGUAGE_MENU);
+  }
+
+  static clickOnDropdownLanguageOption(language) {
+    this.clickOnContains(DROPDOWN_LANGUAGE_MENU, language);
+    this.hasText(DROPDOWN_LANGUAGE_BUTTON, language);
+  }
+
+  static verifyPageIsOnLanguage(language) {
+    // For more check points method need to be refactored
+    cy.fixture("translations").then(function (body) {
+      let obj = body[language];
+      MainPage.hasText(LOG_IN_BUTTON, obj["logIn"]);
+      MainPage.hasText(DEPOSIT_AND_PAY_BUTTON, obj["depositAndPlay"]);
+      MainPage.hasAttributeText(
+        SEARCH_INPUT_FIELD, "placeholder", obj["search"]
+      );
+    });
   }
 }
