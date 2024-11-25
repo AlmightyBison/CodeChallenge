@@ -10,5 +10,9 @@
     "html": {
       "enabled": true
     }
+  },
+  "devDependencies": {
+    "cypress-iframe": "^1.0.1",
+    "cypress-xpath": "^2.0.1"
   }
 }

@@ -14,11 +14,13 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+require("cypress-xpath");
+require("cypress-iframe");
 
 beforeEach(() => {
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
-  });
+  cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
+});
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

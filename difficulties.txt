@@ -1,0 +1,4 @@
+1. Game
+    - waiting till element in search results will be interactable and not just visible
+    - click on "play" button and not on used element detected before
+    - verifying game is loading - never worked with iframe. Took some time to make it work.
