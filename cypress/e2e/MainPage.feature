@@ -20,5 +20,15 @@ Feature: Main Page Features
             | RU       |
 
     @BC-003
-    Scenario: Main Site Navigation through mobile
+    Scenario Outline: Main Site Navigation through mobile
         Given I navigate to boostcasino from mobile device
+        When I click on burger icon in "EN" language
+        And I click on "<option>" option in "EN" burger menu
+        And I check redirection of every sub options of "<option>" in "EN" burger menu
+        Examples:
+            | option     |
+            | home       |
+            | casino     |
+            | liveCasino |
+            | promotions |
+            | support    |

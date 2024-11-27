@@ -45,3 +45,26 @@ Then("I verify that page is on {string} language", function (language) {
 Given("I navigate to boostcasino from mobile device", function () {
   MainPage.openMainMobilePage();
 });
+
+When("I click on burger icon in {string} language", function (language) {
+  MainPage.clickOnBurgerButton();
+  MainPage.burgerMenuEntriesAreVisible(language);
+});
+
+Then(
+  "I click on {string} option in {string} burger menu",
+  function (option, language) {
+    MainPage.clickOnBurgerOptionButton("main", option, language);
+    MainPage.optionEntriesAreVisible(option, language);
+    MainPage.screenshot();
+  }
+);
+
+Then(
+  "I check redirection of every sub options of {string} in {string} burger menu",
+  function (option, language) {
+    MainPage.checkRedirectionOfEverySubOptionsOfOptionInBurger(
+      option, language
+    );
+  }
+);

@@ -1,6 +1,6 @@
 import { BasePage } from "./BasePage";
 
-const MAIN_URL = "https://www.boostcasino.com/";
+const MAIN_URL = "https://www.boostcasino.com";
 const DEFAULT_MOBILE = "samsung-s10";
 const OPTIONAL_ALLOW_COOKIE =
   "div #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection";
@@ -11,6 +11,9 @@ const DEPOSIT_AND_PAY_BUTTON = ".sc-hRwTwm .gtm-button";
 const SEARCH_INPUT_FIELD = ".MuiInputBase-input";
 const SEARCH_RESULT_NAMES = "div .sc-TRNrF h6";
 
+const BURGER_BUTTON = ".burger";
+const BURGER_ENTIRES = "[cursor='pointer']";
+
 export class MainPage extends BasePage {
   static openMainDesktopPage() {
     cy.visit(MAIN_URL);
@@ -20,6 +23,7 @@ export class MainPage extends BasePage {
   static openMainMobilePage() {
     cy.viewport(DEFAULT_MOBILE);
     cy.visit(MAIN_URL);
+    this.enableOptionalCookie();
   }
 
   static enableOptionalCookie() {
@@ -88,6 +92,48 @@ export class MainPage extends BasePage {
       MainPage.hasAttributeText(
         SEARCH_INPUT_FIELD, "placeholder", obj["search"]
       );
+    });
+  }
+
+  static clickOnBurgerButton() {
+    this.click(BURGER_BUTTON);
+  }
+
+  static burgerMenuEntriesAreVisible(language) {
+    this.burgerEntriesAreVisible("main", language);
+  }
+
+  static clickOnBurgerOptionButton(option, button, language) {
+    cy.fixture("burgerEntries").then(function (body) {
+      let btn = body[option][language][button];
+      btn ? MainPage.clickOnContains(BURGER_ENTIRES, btn) : 
+      cy.log("Nothing to click.");
+    });
+  }
+
+  static optionEntriesAreVisible(option, language) {
+    this.burgerEntriesAreVisible(option, language);
+  }
+
+  static burgerEntriesAreVisible(option, language) {
+    cy.fixture("burgerEntries").then(function (body) {
+      let main = body[option][language];
+      Object.values(main).forEach((value) => {
+        MainPage.isVisibleOnContains(BURGER_ENTIRES, value);
+      });
+    });
+  }
+
+  static checkRedirectionOfEverySubOptionsOfOptionInBurger(option, language) {
+    cy.fixture("burgerEntriesUrl").then(function (body) {
+      let main = body[option][language];
+      Object.keys(main).forEach((key) => {
+        MainPage.clickOnBurgerOptionButton(option, key, language);
+        cy.url().should("eq", MAIN_URL + main[key]);
+
+        MainPage.clickOnBurgerButton();
+        MainPage.clickOnBurgerOptionButton("main", option, language);
+      });
     });
   }
 }

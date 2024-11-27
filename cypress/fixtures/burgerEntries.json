@@ -1,0 +1,53 @@
+{
+  "main": {
+    "EN": {
+      "home": "Home",
+      "casino": "Casino",
+      "liveCasino": "Live Casino",
+      "promotions": "Promotions",
+      "support": "Customer Support"
+    }
+  },
+  "home": {
+    "EN": {}
+  },
+  "casino": {
+    "EN": {
+      "popular": "Popular",
+      "news": "New",
+      "slot": "Slots",
+      "jackpots": "Jackpots",
+      "buyFeature": "Buy Feature",
+      "hotSlots": "Hot Slots",
+      "tableGames": "Table Games",
+      "dropsAndWins": "Drops & Wins",
+      "cashDrop": "Cash Drop",
+      "arcade": "Arcade",
+      "clusterGames": "Cluster Games",
+      "latestProvider": "Latest Provider",
+      "exclusives": "Exclusives"
+    }
+  },
+  "liveCasino": {
+    "EN": {
+      "popular": "Popular",
+      "gameShows": "Game Shows",
+      "roulette": "Roulette",
+      "blackjack": "Blackjack",
+      "baccarat": "Baccarat",
+      "poker": "Poker"
+    }
+  },
+  "promotions": {
+    "EN": {
+      "welcomeBonus": "Welcome Bonus",
+      "boostXP": "Boost XP",
+      "casinoPromotions": "Casino Promotions",
+      "liveCasinoPromotions": "Live Casino Promotions",
+      "allPromotions": "All Promotions"
+    }
+  },
+  "support": {
+    "EN": {}
+  }
+}

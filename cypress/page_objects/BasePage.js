@@ -4,7 +4,9 @@ export class BasePage {
   }
 
   static click(selector) {
-    cy.get(selector).click();
+    cy.get(selector)
+      .scrollIntoView({ easing: "linear", duration: 2000 })
+      .click();
   }
 
   static clickOnContains(selector, text) {
@@ -29,5 +31,12 @@ export class BasePage {
 
   static isVisible(selector) {
     cy.get(selector).should("be.visible");
+  }
+
+  static isVisibleOnContains(selector, text) {
+    cy.get(selector)
+      .contains(text)
+      .scrollIntoView({ easing: "linear", duration: 2000 })
+      .should("be.visible");
   }
 }

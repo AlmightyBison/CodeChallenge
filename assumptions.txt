@@ -1,0 +1,3 @@
+3. Main Site Navigation
+    - current urls related to sub options are correct. 
+    If anything, they can be easily changed in "burgerEntiresUrl.json"
