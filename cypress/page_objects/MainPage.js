@@ -1,8 +1,8 @@
 import { BasePage } from "./BasePage";
 
 const MAIN_URL = "https://www.boostcasino.com";
-const DEFAULT_MOBILE = "samsung-s10";
-const OPTIONAL_ALLOW_COOKIE =
+const DEFAULT_MOBILE_NAME = "samsung-s10";
+const OPTIONAL_ALLOW_COOKIE_BUTTON =
   "div #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection";
 const DROPDOWN_LANGUAGE_BUTTON = ".active-item div[font-family='primary']";
 const DROPDOWN_LANGUAGE_MENU = ".sc-tsFYE.hFCUsE";
@@ -21,13 +21,13 @@ export class MainPage extends BasePage {
   }
 
   static openMainMobilePage() {
-    cy.viewport(DEFAULT_MOBILE);
+    cy.viewport(DEFAULT_MOBILE_NAME);
     cy.visit(MAIN_URL);
     this.enableOptionalCookie();
   }
 
   static enableOptionalCookie() {
-    this.click(OPTIONAL_ALLOW_COOKIE);
+    this.click(OPTIONAL_ALLOW_COOKIE_BUTTON);
   }
 
   static searchFieldIsVisible() {
@@ -38,7 +38,7 @@ export class MainPage extends BasePage {
     this.type(SEARCH_INPUT_FIELD, text);
   }
 
-  static checkSearchResultsWithName(name) {
+  static checkSearchResultsContains(name) {
     this.waitLastElementOfSearchResultToAppear(name);
 
     cy.get(SEARCH_RESULT_NAMES).then(($list) => {
@@ -125,7 +125,7 @@ export class MainPage extends BasePage {
   }
 
   static checkRedirectionOfEverySubOptionsOfOptionInBurger(option, language) {
-    cy.fixture("burgerEntriesUrl").then(function (body) {
+    cy.fixture("burgerMenuUrls").then(function (body) {
       let main = body[option][language];
       Object.keys(main).forEach((key) => {
         MainPage.clickOnBurgerOptionButton(option, key, language);

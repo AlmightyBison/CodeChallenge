@@ -10,6 +10,6 @@ export class SlotPage extends BasePage {
   }
 
   static checkPageTitleWithName(name) {
-    this.containText(PAGE_TITLE, name);
+    this.containsText(PAGE_TITLE, name);
   }
 }

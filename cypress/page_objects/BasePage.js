@@ -25,7 +25,7 @@ export class BasePage {
     cy.get(selector).invoke("attr", attribute).should("eq", text);
   }
 
-  static containText(selector, text) {
+  static containsText(selector, text) {
     cy.get(selector).should("be.visible").and("contain.text", text);
   }
 

@@ -1,18 +1,18 @@
 const { defineConfig } = require("cypress");
-const addCucumberPreprocessorPlugin =
+const cucumberPreprocessorPlugin =
   require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
-const createEsbuildPlugin =
+const esbuildPlugin =
   require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
-const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const esbundler = require("@bahmutov/cypress-esbuild-preprocessor");
 
 module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
-      const bundler = createBundler({
-        plugins: [createEsbuildPlugin(config)],
+      const bundler = esbundler({
+        plugins: [esbuildPlugin(config)],
       });
       on("file:preprocessor", bundler);
-      await addCucumberPreprocessorPlugin(on, config);
+      await cucumberPreprocessorPlugin(on, config);
       return config;
     },
     chromeWebSecurity: false,

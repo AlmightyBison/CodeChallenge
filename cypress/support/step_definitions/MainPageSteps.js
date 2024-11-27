@@ -11,7 +11,7 @@ Given("I navigate to boostcasino from desktop device", function () {
 
 When("I enter {string} in search field on main page", function (name) {
   MainPage.enterTextInSearch(name);
-  MainPage.checkSearchResultsWithName(name);
+  MainPage.checkSearchResultsContains(name);
   MainPage.screenshot();
 });
 
